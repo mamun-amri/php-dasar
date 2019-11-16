@@ -12,6 +12,7 @@
 <body>
     <ul>
         <li><a href="pengulangan.php">Pengulangan</a></li>
+        <li><a href="function/date.php">Date</a></li>
     </ul>
 </body>
 
