@@ -11,8 +11,8 @@
 
 <body>
     <ul>
-        <li><a href="pengulangan.php">Pengulangan</a></li>
-        <li><a href="function/date.php">Date</a></li>
+        <li><a href="latihan/">Latihan</a></li>
+        <li><a href="studykasus/">Studi Kasus</a></li>
     </ul>
 </body>
 

@@ -19,4 +19,10 @@ strtotime()
 // strtotime()
 // echo date('l', strtotime('11 02 1997'));
 
+function salam($waktu = 'datang', $nama = 'admin')
+{
+    return "selamat $waktu, $nama!";
+}
+
+echo salam('pagi', 'mamun');
 ?>
