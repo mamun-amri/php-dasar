@@ -20,6 +20,9 @@ if (isset($_REQUEST['aksi']) == 'hapus') {
 }
 
 $mahasiswa = query("SELECT * FROM mahasiswa");
+if (isset($_POST['cari'])) {
+    $mahasiswa = cari($_POST['keyword']);
+}
 ?>
 
 <!DOCTYPE html>
@@ -37,6 +40,11 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
     <p>
         <a href="f_mahasiswa.php?aksi=tambah">Tambah Mahasiswa</a>
     </p>
+    <form action='' method='post'>
+        <input type="text" name="keyword" autocomplete="off" autofocus size="40" placeholder="cari data disini!">
+        <button type="submit" name="cari">cari!</button>
+    </form>
+    <br>
     <table border="1" cellpadding="10" callpadding="0">
         <tr>
             <th>No.</th>
