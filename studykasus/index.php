@@ -1,5 +1,24 @@
 <?php
 require 'functions.php';
+if (isset($_REQUEST['aksi']) == 'hapus') {
+    $id = $_REQUEST['id'];
+    if (hapus($id) > 0) {
+        echo "
+        <script> 
+            alert('data berhasil dihapus!');
+            document.location.href = 'index.php';
+        </script>
+        ";
+    } else {
+        echo "
+        <script> 
+            alert('data gagal dihapus!');
+            document.location.href = 'index.php';
+        </script>
+        ";
+    }
+}
+
 $mahasiswa = query("SELECT * FROM mahasiswa");
 ?>
 
@@ -15,6 +34,9 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
 
 <body>
     <h1>Data Mahasiswa</h1>
+    <p>
+        <a href="f_mahasiswa.php?aksi=tambah">Tambah Mahasiswa</a>
+    </p>
     <table border="1" cellpadding="10" callpadding="0">
         <tr>
             <th>No.</th>
@@ -30,8 +52,8 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
             <tr>
                 <td><?= $i; ?></td>
                 <td>
-                    <a href="">ubah</a> |
-                    <a href="">hapus</a>
+                    <a href="f_mahasiswa.php?aksi=edit&id=<?= $mhs['id']; ?>">ubah</a> |
+                    <a href="index.php?aksi=hapus&id=<?= $mhs['id']; ?>" onclick="return confirm('anda yakin!');">hapus</a>
                 </td>
                 <td><img src="img/<?= $mhs['gambar']; ?>" width="50"></td>
                 <td><?= $mhs['nama']; ?></td>
