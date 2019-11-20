@@ -58,7 +58,7 @@ if ($_REQUEST['aksi'] == 'edit') {
 
 <h1>Tambah Data Mahasiswa</h1>
 <ul>
-    <form action='f_mahasiswa.php?aksi=<?= $aksi ?>' method='post'>
+    <form action='f_mahasiswa.php?aksi=<?= $aksi ?>' method='post' enctype="multipart/form-data">
         <li>
             <label for='nrp'>nrp</label>
             <input type='text' name='nrp' id='nrp' value="<?= $nrp ?>">
@@ -77,7 +77,13 @@ if ($_REQUEST['aksi'] == 'edit') {
         </li>
         <li>
             <label for='gambar'>gambar</label>
-            <input type='text' name='gambar' id='gambar' value="<?= $gambar ?>">
+            <?php if ($_REQUEST['aksi'] == 'edit') : ?>
+                <br>
+                <img src="img/<?= $gambar ?>" width="40">
+                <br>
+            <?php endif; ?>
+            <input type='file' name='gambar' id='gambar'>
+            <input type='hidden' name='gambar' id='gambar' value="<?= $gambar ?>">
         </li>
         <li>
             <input type="hidden" name="id" value="<?= $id; ?>">
