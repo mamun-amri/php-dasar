@@ -122,3 +122,45 @@ function cari($keyword)
 
     return query($query);
 }
+
+function register($data)
+{
+    global $conn;
+    $username   = strtolower(stripcslashes($data['username']));
+    $password   = mysqli_real_escape_string($conn, $data['password']);
+    $password2  = mysqli_real_escape_string($conn, $data['password2']);
+
+    if (empty(trim($username)) || empty(trim($password2)) || empty(trim($password))) {
+        echo "
+        <script>
+        alert('field tidak boleh kosong!');
+        </script>
+        ";
+        return false;
+    }
+
+    if ($password != $password2) {
+        echo "
+        <script>
+        alert('password tidak sama!');
+        </script>
+        ";
+        return false;
+    }
+
+    $result = query("SELECT username FROM user WHERE username = '$username'");
+
+    if ($result) {
+        echo "
+        <script>
+        alert('username sudah ada!');
+        </script>
+        ";
+        return false;
+    }
+
+    $password = password_hash($password, PASSWORD_DEFAULT);
+
+    mysqli_query($conn, "INSERT INTO user VALUES (null,'$username','$password')");
+    return mysqli_affected_rows($conn);
+}
