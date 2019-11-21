@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['login'])) {
+    header('Location:login.php');
+    exit;
+}
+
 require 'functions.php';
 if (isset($_REQUEST['aksi']) == 'hapus') {
     $id = $_REQUEST['id'];
@@ -36,6 +43,7 @@ if (isset($_POST['cari'])) {
 </head>
 
 <body>
+    <p><a href="logout.php">logout</a></p>
     <h1>Data Mahasiswa</h1>
     <p>
         <a href="f_mahasiswa.php?aksi=tambah">Tambah Mahasiswa</a>
