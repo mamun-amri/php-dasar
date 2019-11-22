@@ -29,9 +29,14 @@ if (isset($_REQUEST['aksi']) == 'hapus') {
         ";
     }
 }
+// pagination config
+$perPage        = 2;
+$jumlahData     = count(query("SELECT * FROM mahasiswa"));
+$pageAktif      = (isset($_GET['page'])) ? $_GET['page'] : 1;
+$start          = ($perPage * $pageAktif) - $pageAktif;
+$jumlahHalaman  = ceil($jumlahData / $perPage);
 
-
-$mahasiswa = query("SELECT * FROM mahasiswa");
+$mahasiswa = query("SELECT * FROM mahasiswa LIMIT $start,$perPage");
 
 // $mahasiswa = query("SELECT * FROM mahasiswa ");
 if (isset($_POST['cari'])) {
@@ -66,6 +71,19 @@ if (isset($_POST['cari'])) {
         <button type="submit" name="cari" id="btn-cari">cari!</button>
     </form>
     <br>
+    <?php if ($pageAktif > 1) : ?>
+        <a href="?page=<?= $pageAktif - 1 ?>">&laquo;</a>
+    <?php endif; ?>
+    <?php for ($i = 1; $i <= $jumlahHalaman; $i++) : ?>
+        <?php if ($i == $pageAktif) : ?>
+            <a href="?page=<?= $i; ?>" id="page"><?= $i; ?></a>
+        <?php else : ?>
+            <a href="?page=<?= $i; ?>"><?= $i; ?></a>
+        <?php endif; ?>
+    <?php endfor; ?>
+    <?php if ($pageAktif < $jumlahHalaman) : ?>
+        <a href="?page=<?= $pageAktif + 1 ?>">&raquo;</a>
+    <?php endif; ?>
 
     <div id="container">
         <table border="1" cellpadding="10" callpadding="0">
@@ -78,7 +96,7 @@ if (isset($_POST['cari'])) {
                 <th>Email</th>
                 <th>Jurusan</th>
             </tr>
-            <?php $i = 1 ?>
+            <?php $i = ($pageAktif != 1) ? $pageAktif + 1 : 1 ?>
             <?php foreach ($mahasiswa as $mhs) : ?>
                 <tr>
                     <td><?= $i; ?></td>
