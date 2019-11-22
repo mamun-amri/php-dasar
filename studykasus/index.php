@@ -52,6 +52,14 @@ if (isset($_POST['cari'])) {
             font-weight: bold;
             color: red;
         }
+
+        .loaded {
+            width: 100px;
+            position: absolute;
+            z-index: -1;
+            top: 125px;
+            left: 255px;
+        }
     </style>
 </head>
 
@@ -64,6 +72,7 @@ if (isset($_POST['cari'])) {
     <form action='' method='post'>
         <input type="text" name="keyword" id="keyword" autocomplete="off" autofocus size="40" placeholder="cari data disini!">
         <button type="submit" name="cari" id="btn-cari">cari!</button>
+        <img src="img/loading.gif" class="loaded">
     </form>
     <br>
 
@@ -96,8 +105,8 @@ if (isset($_POST['cari'])) {
             <?php endforeach; ?>
         </table>
     </div>
-
-    <script src="js/script.js"></script>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/myscript.js"></script>
 </body>
 
 </html>
