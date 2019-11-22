@@ -17,4 +17,14 @@ $(document).ready(function () {
 
     });
 
+    // print 
+    $('.cetak').on('click', function (e) {
+        e.preventDefault();
+        let href = $(this).attr('href');
+        let conf = confirm('cetak!');
+        if (conf) {
+            document.location.href = href;
+        }
+    });
+
 });

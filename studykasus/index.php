@@ -64,7 +64,7 @@ if (isset($_POST['cari'])) {
 </head>
 
 <body>
-    <p><a href="logout.php">logout</a></p>
+    <a href="logout.php">Logout</a> || <a href="print.php" class="cetak">Cetak!</a>
     <h1>Data Mahasiswa</h1>
     <p>
         <a href="f_mahasiswa.php?aksi=tambah">Tambah Mahasiswa</a>
